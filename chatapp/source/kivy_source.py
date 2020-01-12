@@ -9,4 +9,11 @@ from kivy.uix.textinput import TextInput
 # button
 from kivy.uix.button import Button
 
+#time
+from datetime import datetime
+
+
+
+import os
+
 kivy.require('1.11.1')
