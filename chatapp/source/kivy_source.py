@@ -9,8 +9,8 @@ from kivy.uix.textinput import TextInput
 # button
 from kivy.uix.button import Button
 # screen manager
-from kivy.uix.screenmanager import ScreenManager
-from kivy.uix.screenmanager import Screen
+from kivy.uix.screenmanager import Screen, ScreenManager
+
 
 #time
 from datetime import datetime
