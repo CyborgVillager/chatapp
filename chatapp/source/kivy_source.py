@@ -8,6 +8,9 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 # button
 from kivy.uix.button import Button
+# screen manager
+from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.screenmanager import Screen
 
 #time
 from datetime import datetime

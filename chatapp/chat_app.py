@@ -1,3 +1,5 @@
+
+
 from kivy_source import *
 
 
@@ -49,20 +51,46 @@ class ConnectPage(GridLayout):
         username = self.username.text
 
         # info the user will see once they have submmited the info
-        print('\n')
-        print(f'You are attemping to join {ip}:{port} as {username}')
-        print(f'Please Stand By {username}...')
+
 
         with open('login_attempts.txt','w') as f:
             f.write(f'{ip},{port},{username}')
-            f.close()
+        information = f'You are attemping to join {ip}:{port} as {username}' + '\n' + 'Please Stand By!' + '\n' + '^_^'
+        chat_app.info_page.update_info(information)
+        #bring the screen to be seen
+        chat_app.screen_manager.current = 'Information'
 
+
+class InfoPage(GridLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.cols = 1
+        self.message = Label(halign='center',valign='middle', font_size=30)
+        self.message.bind(width=self.update_text_width)
+        self.add_widget(self.message)
+    def update_info(self,message):
+        self.message.text = message
+
+    # takes up the page to show the text
+    def update_text_width(self,*_):
+        self.message.text_size = (self.message.width*.9,None)
 
 
 class ChatApp(App):
     # this is the init
     def build(self):
-        return ConnectPage()
+        self.screen_manager = ScreenManager()
+        self.connect_page = ConnectPage()
+        screen = Screen(name='Connect')
+        screen.add_widget(self.connect_page)
+        self.screen_manager.add_widget(screen)
 
+        self.info_page = InfoPage()
+        screen = Screen(name='Information')
+        screen.add_widget(self.info_page)
+        self.screen_manager.add_widget(screen)
+
+        return self.screen_manager
 if __name__ =='__main__':
-    ChatApp().run()
+  chat_app = ChatApp()
+  chat_app.run()
