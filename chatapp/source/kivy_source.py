@@ -16,6 +16,11 @@ from kivy.uix.button import Button
 # screen manager
 from kivy.uix.screenmanager import Screen, ScreenManager
 
+# kivy core
+from kivy.core.window import Window
+
+from kivy.uix.scrollview import ScrollView
+
 # time
 from kivy.clock import Clock
 

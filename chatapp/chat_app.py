@@ -98,7 +98,23 @@ class ChatPage(GridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.cols = 1
-        self.add_widget(Label(text='Hello User', font_size=30))
+        self.rows = 2
+
+        self.history = Label(height=Window.size[1] * 0.9, size_hint_y=None)
+        self.add_widget(self.history)
+
+        self.new_message = TextInput(width=Window.size[0] * 0.8, size_hint_x=None, multiline=False)
+        self.send = Button(text="Send")
+        self.send.bind(on_press=self.send_message)
+
+        bottom_line = GridLayout(cols=2)
+        bottom_line.add_widget(self.new_message)
+        bottom_line.add_widget(self.send)
+        self.add_widget(bottom_line)
+
+
+def send_message(self, _):
+    print("Send a message: ")
 
 
 class ChatApp(App):
