@@ -98,7 +98,7 @@ class ChatPage(GridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.cols = 1
-        self.add_widget(Label(text='Hello User'))
+        self.add_widget(Label(text='Hello User', font_size=30))
 
 
 class ChatApp(App):
@@ -106,6 +106,9 @@ class ChatApp(App):
     # connections to the information
     def build(self):
         self.screen_manager = ScreenManager()
+
+        # Initial, connection screen (we use passed in name to activate screen)
+        # First create a page, then a new screen, add page to screen and screen to screen manager
         self.connect_page = ConnectPage()
         screen = Screen(name='Connect')
         screen.add_widget(self.connect_page)
@@ -118,6 +121,7 @@ class ChatApp(App):
 
         return self.screen_manager
     # once user has connect a chat page will be created
+
     def create_chat_page(self):
         self.chat_page = ChatPage()
         screen = Screen(name='Chat')
